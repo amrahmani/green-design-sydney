@@ -1,5 +1,6 @@
 const { siteData } = window;
 
+const pageName = document.body.dataset.page || "home";
 const projectGrid = document.getElementById("project-grid");
 const projectFilters = document.getElementById("project-filters");
 const tickerTrack = document.getElementById("ticker-track");
@@ -105,7 +106,20 @@ function uniqueCategories() {
   return ["All", ...new Set(siteData.projects.map((project) => project.category))];
 }
 
+function limitItems(items, element) {
+  if (!element) {
+    return items;
+  }
+
+  const limit = Number(element.dataset.limit || 0);
+  return limit > 0 ? items.slice(0, limit) : items;
+}
+
 function renderTicker() {
+  if (!tickerTrack) {
+    return;
+  }
+
   const items = [...siteData.marquee, ...siteData.marquee];
   tickerTrack.innerHTML = items
     .map((item) => `<span class="ticker__item">${item}</span>`)
@@ -113,6 +127,10 @@ function renderTicker() {
 }
 
 function renderFilters() {
+  if (!projectFilters) {
+    return;
+  }
+
   projectFilters.innerHTML = uniqueCategories()
     .map(
       (category) => `
@@ -130,12 +148,17 @@ function renderFilters() {
 }
 
 function renderProjects() {
+  if (!projectGrid) {
+    return;
+  }
+
   const filteredProjects =
     activeFilter === "All"
       ? siteData.projects
       : siteData.projects.filter((project) => project.category === activeFilter);
+  const visibleProjects = limitItems(filteredProjects, projectGrid);
 
-  projectGrid.innerHTML = filteredProjects
+  projectGrid.innerHTML = visibleProjects
     .map(
       (project, index) => `
         <article class="project-card reveal">
@@ -163,13 +186,22 @@ function renderProjects() {
 }
 
 function renderArchiveIndex() {
+  if (!archiveIndexList) {
+    return;
+  }
+
   archiveIndexList.innerHTML = siteData.archiveTitles
     .map((title) => `<li>${title}</li>`)
     .join("");
 }
 
 function renderServices() {
-  serviceGrid.innerHTML = siteData.services
+  if (!serviceGrid) {
+    return;
+  }
+
+  const visibleServices = limitItems(siteData.services, serviceGrid);
+  serviceGrid.innerHTML = visibleServices
     .map(
       (service) => `
         <article class="service-card reveal">
@@ -191,6 +223,10 @@ function renderServices() {
 }
 
 function renderProcess() {
+  if (!processGrid) {
+    return;
+  }
+
   processGrid.innerHTML = siteData.process
     .map(
       (item) => `
@@ -205,6 +241,10 @@ function renderProcess() {
 }
 
 function renderFaqs() {
+  if (!faqList) {
+    return;
+  }
+
   faqList.innerHTML = siteData.faqs
     .map(
       (item) => `
@@ -218,6 +258,10 @@ function renderFaqs() {
 }
 
 function openProject(projectId) {
+  if (!dialog || !dialogImage || !dialogCategory || !dialogTitle || !dialogSubtitle || !dialogSummary || !dialogTags) {
+    return;
+  }
+
   const project = siteData.projects.find((item) => item.id === projectId);
 
   if (!project) {
@@ -240,6 +284,10 @@ function openProject(projectId) {
 }
 
 function bindFilterEvents() {
+  if (!projectFilters) {
+    return;
+  }
+
   projectFilters.addEventListener("click", (event) => {
     const target = event.target.closest("[data-filter]");
 
@@ -255,6 +303,10 @@ function bindFilterEvents() {
 }
 
 function bindMenu() {
+  if (!menuToggle || !siteNav) {
+    return;
+  }
+
   menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("is-open");
     menuToggle.setAttribute("aria-expanded", String(isOpen));
@@ -401,42 +453,23 @@ function bindRevealObserver() {
   }, 1800);
 }
 
-function bindActiveSections() {
-  const links = [...siteNav.querySelectorAll("a")];
-  const sectionMap = new Map(
-    links.map((link) => [link.getAttribute("href").replace("#", ""), link])
-  );
-
-  if (!("IntersectionObserver" in window)) {
+function bindActiveNavigation() {
+  if (!siteNav) {
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        const id = entry.target.id;
-        links.forEach((link) => link.classList.remove("is-current"));
-
-        if (sectionMap.has(id)) {
-          sectionMap.get(id).classList.add("is-current");
-        }
-      });
-    },
-    {
-      threshold: 0.45
-    }
-  );
-
-  document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
+  siteNav.querySelectorAll("a[data-nav-page]").forEach((link) => {
+    link.classList.toggle("is-current", link.dataset.navPage === pageName);
+  });
 }
 
 function bindDialogClose() {
+  if (!dialog) {
+    return;
+  }
+
   dialog.addEventListener("click", (event) => {
-    const anchor = event.target.closest('a[href^="#"]');
+    const anchor = event.target.closest("a[href]");
 
     if (anchor) {
       dialog.close();
@@ -486,7 +519,7 @@ bindFilterEvents();
 bindEnquiryForms();
 bindMenu();
 bindRevealObserver();
-bindActiveSections();
+bindActiveNavigation();
 bindDialogClose();
 scrollToHashTarget();
 window.addEventListener("hashchange", scrollToHashTarget);
