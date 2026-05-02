@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Green Design Sydney | Design, Archive and Consultation</title>
+    <meta
+      name="description"
+      content="Green Design Sydney redesigned as a richer editorial archive with projects, services, approvals guidance and consultation pathways."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./assets/originals/1e2317d9-5132-444b-93df-b23bd5818da6.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-glow page-glow--one" aria-hidden="true"></div>
+    <div class="page-glow page-glow--two" aria-hidden="true"></div>
+    <div class="page-grid" aria-hidden="true"></div>
+
+    <header class="site-header" data-header>
+      <div class="wrap site-header__inner">
+        <a class="brand" href="#top" aria-label="Green Design Sydney home">
+          <img
+            class="brand__mark"
+            src="./assets/originals/blob-0001.png"
+            alt="Green Design Sydney logo mark"
+          />
+          <span class="brand__text">
+            <strong>Green Design Sydney</strong>
+            <span>Beauty, function and sustainability</span>
+          </span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-menu-toggle
+        >
+          Menu
+        </button>
+
+        <nav class="site-nav" id="site-nav" data-nav>
+          <a href="#projects">Projects</a>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#practice">Practice</a>
+          <a href="#resources">Resources</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <a
+          class="button button--primary site-header__cta"
+          href="#booking"
+        >
+          Book First Hour
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section" id="top">
+        <div class="wrap hero__layout">
+          <div class="hero__copy reveal">
+            <p class="eyebrow">Green Design Sydney / Reimagined archive</p>
+            <h1>
+              Architectural direction for luxury homes, specialist projects and approvals that need
+              more than a generic answer.
+            </h1>
+            <p class="hero__lede">
+              From bespoke houses and interiors to childcare environments, group homes, worship
+              spaces and council pathways, Green Design Sydney brings beauty, functionality and
+              sustainability into one clearer client journey.
+            </p>
+
+            <div class="hero__actions">
+              <a class="button button--primary" href="#booking">Book Consultation</a>
+              <a class="button button--ghost" href="tel:+61282871288">Call 02 8287 1288</a>
+            </div>
+
+            <div class="hero__metrics">
+              <article class="metric-card">
+                <span>20+ years</span>
+                <p>Led by Fred Hos with experience across planning, interiors and sustainable design.</p>
+              </article>
+              <article class="metric-card">
+                <span>2 luxury homes / year</span>
+                <p>Exclusive annual intake for high-focus residential commissions in Greater Sydney.</p>
+              </article>
+              <article class="metric-card">
+                <span>BDAA accredited</span>
+                <p>Practice credentials and approvals experience carried across residential and medium-rise work.</p>
+              </article>
+            </div>
+          </div>
+
+          <aside class="hero__visual reveal">
+            <figure class="hero__figure">
+              <img
+                src="./assets/originals/2024-09-10_19-34-28.jpg"
+                alt="Luxury residential concept from the Green Design Sydney archive"
+              />
+            </figure>
+            <div class="hero__panel">
+              <p class="hero__panel-label">Current luxury program</p>
+              <h2>Where vision meets architectural mastery.</h2>
+              <p>
+                Green Design Sydney currently reserves its luxury program for architecturally
+                significant homes with a fully collaborative design process and premium material
+                ambition.
+              </p>
+              <ul class="hero__panel-list">
+                <li>Prime Greater Sydney locations</li>
+                <li>Waterfront, hillside or view-focused sites</li>
+                <li>Construction value from $5M AUD</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="ticker" aria-label="Project archive titles">
+        <div class="ticker__track" id="ticker-track"></div>
+      </section>
+
+      <section class="section" id="projects" data-section="Projects">
+        <div class="wrap">
+          <div class="section-heading reveal">
+            <div>
+              <p class="section-index">01</p>
+              <p class="eyebrow">Project archive</p>
+            </div>
+            <div class="section-heading__content">
+              <h2>An archive-led front door, inspired by ABA's clarity but grounded in Green Design Sydney's material.</h2>
+              <p>
+                The current live site contains a broad project library, strong sector diversity and
+                several standout residential narratives. This redesigned archive turns that material
+                into a sharper, filterable experience with selected project highlights plus a broader
+                title index from the live gallery.
+              </p>
+            </div>
+          </div>
+
+          <div class="filter-bar reveal" id="project-filters" aria-label="Project filters"></div>
+          <div class="project-grid" id="project-grid"></div>
+
+          <div class="archive-index reveal">
+            <div class="archive-index__intro">
+              <p class="eyebrow">Extended title index</p>
+              <h3>More titles extracted from the live gallery.</h3>
+              <p>
+                The original site holds a much larger title bank than it presents well. This index
+                keeps those project names visible while the curated cards above do the heavy visual
+                lifting.
+              </p>
+            </div>
+            <ul class="archive-index__list" id="archive-index-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--accent" id="luxury-program">
+        <div class="wrap luxury-layout">
+          <div class="luxury-copy reveal">
+            <p class="section-index">02</p>
+            <p class="eyebrow">Exclusive luxury home projects</p>
+            <h2>A focused residential program rather than a volume pipeline.</h2>
+            <p>
+              The live Green Design Sydney homepage already contains the strongest positioning
+              statement on the site: a tightly curated luxury home offer with only two houses taken
+              on per year. This redesign gives that message the space and precision it deserves.
+            </p>
+            <a class="button button--ghost" href="#consideration">
+              Secure Your Place
+            </a>
+          </div>
+
+          <div class="luxury-panels reveal">
+            <article class="luxury-card">
+              <h3>Past masterpieces</h3>
+              <ul class="luxury-list">
+                <li>
+                  <strong>Harbourfront Estate - Mosman</strong>
+                  <span>A modern architectural marvel designed for seamless indoor-outdoor living and timeless elegance.</span>
+                </li>
+                <li>
+                  <strong>Hillside Mansion - Vaucluse</strong>
+                  <span>An iconic residence with panoramic views, sustainable design elements and bespoke luxury interiors.</span>
+                </li>
+                <li>
+                  <strong>Riverside Retreat - Hunters Hill</strong>
+                  <span>A peaceful sanctuary blending contemporary design with natural surroundings for sophisticated living.</span>
+                </li>
+              </ul>
+            </article>
+
+            <article class="luxury-card">
+              <h3>Eligibility criteria</h3>
+              <div class="criteria-grid">
+                <div>
+                  <p class="criteria-label">Client</p>
+                  <ul class="criteria-list">
+                    <li>Vision for a unique and architecturally significant home</li>
+                    <li>Commitment to high-end materials and craftsmanship</li>
+                    <li>Willingness to engage in a fully collaborative process</li>
+                    <li>Construction budgets starting from $5M AUD</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="criteria-label">Location</p>
+                  <ul class="criteria-list">
+                    <li>Prestigious sites within Greater Sydney</li>
+                    <li>Waterfront, hillside or panoramic attributes</li>
+                    <li>Suitable zoning and planning potential</li>
+                    <li>Long-term value and legacy potential</li>
+                  </ul>
+                </div>
+              </div>
+              <p class="luxury-note">
+                Approved clients also receive entry into the Luxury Homeowners Club for ongoing
+                support, property maintenance advice and private events.
+              </p>
+            </article>
+
+            <article class="luxury-card luxury-card--form" id="consideration">
+              <p class="eyebrow">Original luxury widget restored</p>
+              <h3>Apply for Consideration Now</h3>
+              <p>
+                The live homepage only asks for an email before applying. This upgraded version
+                keeps that simple first step and adds the project context Green Design Sydney would
+                need to review a luxury commission quickly.
+              </p>
+              <form class="enquiry-form enquiry-form--light" data-enquiry-form="consideration">
+                <div class="form-grid form-grid--two">
+                  <label class="field">
+                    <span>Name</span>
+                    <input type="text" name="name" autocomplete="name" required />
+                  </label>
+                  <label class="field">
+                    <span>Email</span>
+                    <input type="email" name="email" autocomplete="email" required />
+                  </label>
+                  <label class="field">
+                    <span>Phone</span>
+                    <input type="tel" name="phone" autocomplete="tel" />
+                  </label>
+                  <label class="field">
+                    <span>Project suburb or site</span>
+                    <input type="text" name="location" autocomplete="address-level2" required />
+                  </label>
+                  <label class="field field--full">
+                    <span>Construction budget</span>
+                    <select name="budget" required>
+                      <option value="">Select a budget range</option>
+                      <option value="$5M-$7M AUD">$5M-$7M AUD</option>
+                      <option value="$7M-$10M AUD">$7M-$10M AUD</option>
+                      <option value="$10M+ AUD">$10M+ AUD</option>
+                    </select>
+                  </label>
+                  <label class="field field--full">
+                    <span>Project vision</span>
+                    <textarea
+                      name="vision"
+                      rows="5"
+                      placeholder="Describe the home, site qualities, design ambition and anything that makes the brief architecturally significant."
+                      required
+                    ></textarea>
+                  </label>
+                </div>
+                <div class="form-actions form-actions--stack">
+                  <button class="button button--primary" type="submit">
+                    Apply for Consideration
+                  </button>
+                  <p class="form-note">
+                    Approved clients receive lifetime membership to the Luxury Homeowners Club,
+                    plus ongoing support and private event invitations.
+                  </p>
+                </div>
+                <p class="form-feedback" aria-live="polite"></p>
+              </form>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services" data-section="Services">
+        <div class="wrap">
+          <div class="section-heading reveal">
+            <div>
+              <p class="section-index">03</p>
+              <p class="eyebrow">Services</p>
+            </div>
+            <div class="section-heading__content">
+              <h2>Residential depth, specialist sectors and approvals guidance in one cleaner system.</h2>
+              <p>
+                The live site spreads its value across many separate pages. Here, those offers are
+                reorganised into a consistent service set with stronger visual hierarchy, clearer
+                summaries and better entry points for the right type of client.
+              </p>
+            </div>
+          </div>
+
+          <div class="service-grid" id="service-grid"></div>
+        </div>
+      </section>
+
+      <section class="section section--process" id="process" data-section="Process">
+        <div class="wrap process-layout">
+          <div class="section-heading reveal">
+            <div>
+              <p class="section-index">04</p>
+              <p class="eyebrow">Process</p>
+            </div>
+            <div class="section-heading__content">
+              <h2>A calmer path from briefing and concept through approvals, documentation and delivery.</h2>
+              <p>
+                Green Design Sydney's existing interior and approvals pages already describe a solid
+                process. This version consolidates that journey into a readable sequence that helps
+                clients understand what happens next.
+              </p>
+            </div>
+          </div>
+
+          <div class="process-grid" id="process-grid"></div>
+
+          <aside class="approval-panel reveal">
+            <div class="approval-panel__media">
+              <img src="./assets/originals/Approval1.png" alt="Approved stamp over plan drawing" />
+            </div>
+            <div class="approval-panel__copy">
+              <p class="eyebrow">Approvals support</p>
+              <h3>DA, CDC and building approval guidance without unnecessary complexity.</h3>
+              <p>
+                When a Complying Development Certificate is not possible, the path shifts to a
+                Development Application. Green Design Sydney's current copy emphasises balancing cost
+                control with enough information for councils and certifiers to approve confidently.
+              </p>
+              <ul class="approval-panel__list">
+                <li>Planning and building controls reviewed early</li>
+                <li>Statement of Environmental Effects support where appropriate</li>
+                <li>Documentation coordinated before works begin</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="practice" data-section="Practice">
+        <div class="wrap practice-layout">
+          <div class="practice-copy reveal">
+            <p class="section-index">05</p>
+            <p class="eyebrow">Practice</p>
+            <h2>A more confident narrative for who Green Design Sydney is and why clients would trust the studio.</h2>
+            <p>
+              Green Design Sydney describes itself as a proactive building design and drafting office
+              based in Sydney, known for competitive pricing, quick service and support through the
+              council approval process. That substance is retained here, but framed with stronger
+              typography, accreditation proof and a clearer story.
+            </p>
+
+            <div class="practice-notes">
+              <article>
+                <h3>Philosophy</h3>
+                <p>
+                  Build beautiful, progressive homes and buildings that make people comfortable while
+                  protecting the environment through design.
+                </p>
+              </article>
+              <article>
+                <h3>Mission</h3>
+                <p>
+                  Communication is the key to success. The goal is to work closely with clients so
+                  vision, practicality and approval readiness align from the start.
+                </p>
+              </article>
+              <article>
+                <h3>Leadership</h3>
+                <p>
+                  Fred Hos is presented on the current site as a committed designer with around two
+                  decades of experience across planning, sustainable and culturally relevant design,
+                  with a strong interior focus.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="practice-gallery reveal">
+            <figure class="practice-gallery__card practice-gallery__card--certificate">
+              <img
+                src="./assets/originals/BDAA_Certificate_Accreditation_Farshid_Ho-0001.png"
+                alt="BDAA accreditation certificate for Farshid Hosseini"
+              />
+              <figcaption>BDAA accreditation</figcaption>
+            </figure>
+            <figure class="practice-gallery__card">
+              <img
+                src="./assets/originals/photo_2024-06-17_20-00-53.jpg"
+                alt="Interior space from the Green Design Sydney source material"
+              />
+              <figcaption>Interior and fit-out work is already part of the studio's live service mix.</figcaption>
+            </figure>
+            <figure class="practice-gallery__card practice-gallery__card--approval">
+              <img
+                src="./assets/originals/circle-building-approval.png"
+                alt="Building approval graphic"
+              />
+              <figcaption>Approval support remains a core conversion point for the practice.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--resources" id="resources" data-section="Resources">
+        <div class="wrap resources-layout">
+          <div class="section-heading reveal">
+            <div>
+              <p class="section-index">06</p>
+              <p class="eyebrow">Resources</p>
+            </div>
+            <div class="section-heading__content">
+              <h2>Practical guidance pulled from the live Granny Flats, Building Approvals and CDC / DA pages.</h2>
+              <p>
+                The current Resources page is effectively empty, so this redesign replaces it with
+                the planning information that clients actually need during early decision-making.
+              </p>
+            </div>
+          </div>
+
+          <div class="resource-cta-grid">
+            <article class="resource-panel reveal" id="booking">
+              <p class="eyebrow">Book first hour</p>
+              <h3>One-hour free building design consultation.</h3>
+              <p>
+                We would love to hear from you and discuss your project. The original contact page
+                promises a one-hour free building design consultation, so this rebuilt booking flow
+                captures the visitor's details first, then opens the live Green Design Sydney
+                booking calendar in a new tab.
+              </p>
+              <form class="enquiry-form" data-enquiry-form="booking">
+                <div class="form-grid form-grid--two">
+                  <label class="field">
+                    <span>Name</span>
+                    <input type="text" name="name" autocomplete="name" required />
+                  </label>
+                  <label class="field">
+                    <span>Email</span>
+                    <input type="email" name="email" autocomplete="email" required />
+                  </label>
+                  <label class="field">
+                    <span>Phone</span>
+                    <input type="tel" name="phone" autocomplete="tel" />
+                  </label>
+                  <label class="field">
+                    <span>Consultation focus</span>
+                    <select name="consultation" required>
+                      <option value="">Choose a focus</option>
+                      <option value="Building design">Building design</option>
+                      <option value="Council approvals">Council approvals</option>
+                      <option value="Interior design">Interior design</option>
+                      <option value="Luxury home program">Luxury home program</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Preferred week</span>
+                    <input type="text" name="preferredWeek" placeholder="e.g. Week of 12 May" />
+                  </label>
+                  <label class="field">
+                    <span>Project location</span>
+                    <input type="text" name="location" placeholder="Suburb or council area" />
+                  </label>
+                  <label class="field field--full">
+                    <span>Project brief</span>
+                    <textarea
+                      name="brief"
+                      rows="5"
+                      placeholder="Tell Green Design Sydney what you want to discuss in the first hour."
+                      required
+                    ></textarea>
+                  </label>
+                </div>
+                <div class="form-actions">
+                  <button class="button button--primary" type="submit">
+                    Prepare Booking Request
+                  </button>
+                  <a class="button button--ghost" data-booking-url href="#">
+                    Open Live Calendar
+                  </a>
+                </div>
+              <p class="form-note">
+                After you submit, the enquiry email draft opens and the original booking calendar
+                launches in a separate tab when a confirmed enquiry inbox is available. Until then,
+                the booking summary is copied and the live calendar still opens.
+              </p>
+                <p class="form-feedback" aria-live="polite"></p>
+              </form>
+            </article>
+
+            <aside class="resource-panel resource-panel--subscribe reveal">
+              <p class="eyebrow">Original subscribe form</p>
+              <h3>Subscribe</h3>
+              <p>
+                The current contact page also includes a simple email-only signup. That field is
+                restored here, alongside the interior-design note about complimentary 30-minute
+                on-site briefings per room and the live contact handoff used when no public inbox is
+                published on the original site.
+              </p>
+              <form class="enquiry-form enquiry-form--compact" data-enquiry-form="subscribe">
+                <label class="field">
+                  <span>Email Address</span>
+                  <input
+                    type="email"
+                    name="email"
+                    autocomplete="email"
+                    placeholder="Email Address"
+                    required
+                  />
+                </label>
+                <div class="form-actions">
+                  <button class="button button--primary" type="submit">Sign up</button>
+                </div>
+                <p class="form-feedback" aria-live="polite"></p>
+              </form>
+              <div class="resource-note-list">
+                <p>Also pulled from the original site:</p>
+                <ul>
+                  <li>Complimentary 30-minute on-site interior briefings are offered per room.</li>
+                  <li>Projects can move from CDC to DA where complying development is not possible.</li>
+                  <li>Approval-ready plans and supporting documents are a major part of the service mix.</li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+
+          <div class="faq-list" id="faq-list"></div>
+        </div>
+      </section>
+
+      <section class="section section--contact" id="contact" data-section="Contact">
+        <div class="wrap contact-layout">
+          <div class="contact-copy reveal">
+            <p class="section-index">07</p>
+            <p class="eyebrow">Contact</p>
+            <h2>A cleaner finish with direct actions instead of a dead-end footer.</h2>
+            <p>
+              The live contact page includes a free-estimate form, consultation booking, Seaforth
+              address, phone numbers and weekday hours. This rebuilt contact section restores those
+              essentials and keeps the original field set visible in one place.
+            </p>
+
+            <div class="contact-actions">
+              <a class="button button--primary" href="#booking">Book First Hour</a>
+              <a class="button button--ghost" href="tel:+61282871288">Call Studio</a>
+            </div>
+          </div>
+
+          <div class="contact-stack">
+            <form class="contact-form enquiry-form reveal" data-enquiry-form="contact">
+              <div class="contact-form__heading">
+                <p class="eyebrow">Original contact form restored</p>
+                <h3>Start a Free Estimate</h3>
+                <p>
+                  These fields are pulled directly from the live contact page: Name, Email*, Phone
+                  and project details.
+                </p>
+              </div>
+              <div class="form-grid form-grid--two">
+                <label class="field">
+                  <span>Name</span>
+                  <input type="text" name="name" autocomplete="name" required />
+                </label>
+                <label class="field">
+                  <span>Email*</span>
+                  <input type="email" name="email" autocomplete="email" required />
+                </label>
+                <label class="field field--full">
+                  <span>Phone</span>
+                  <input type="tel" name="phone" autocomplete="tel" />
+                </label>
+                <label class="field field--full">
+                  <span>What are the dates and details of your project?</span>
+                  <textarea
+                    name="details"
+                    rows="6"
+                    placeholder="What are the dates and details of your project?"
+                    required
+                  ></textarea>
+                </label>
+              </div>
+              <div class="form-actions">
+                <button class="button button--primary" type="submit">Send Estimate Request</button>
+                <a class="button button--ghost" href="#booking">Book First Hour</a>
+              </div>
+              <p class="form-note">
+                The original site uses a hosted form with reCAPTCHA and does not publicly list a
+                direct email address. This redesigned static build prepares a structured enquiry
+                summary and hands visitors into the live original contact or booking flow instead.
+              </p>
+              <p class="form-feedback" aria-live="polite"></p>
+            </form>
+
+            <div class="contact-cards reveal">
+              <article class="contact-card">
+                <h3>Visit</h3>
+                <p>18 Richmond Road, Seaforth NSW, Australia</p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&amp;query=18+Richmond+Road+Seaforth+NSW+Australia"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Get directions
+                </a>
+              </article>
+              <article class="contact-card">
+                <h3>Call</h3>
+                <p>02 8287 1288</p>
+                <p>0426 967 745</p>
+                <a href="tel:+61426967745">Call mobile</a>
+              </article>
+              <article class="contact-card">
+                <h3>Hours</h3>
+                <p>Monday - Friday: 8am - 5pm</p>
+                <p>Saturday - Sunday: Closed</p>
+                <span>One-hour free building design consultation available.</span>
+              </article>
+              <article class="contact-card">
+                <h3>Follow</h3>
+                <p>See ongoing updates through the current social channels.</p>
+                <a href="https://www.instagram.com/greendesignsydney" target="_blank" rel="noreferrer">
+                  Instagram
+                </a>
+                <a href="https://www.facebook.com/100354171320674" target="_blank" rel="noreferrer">
+                  Facebook
+                </a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <p>Green Design Sydney - extracted live-site content, archive imagery, contact details and original enquiry flows rebuilt into a stronger static experience.</p>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
+
+    <dialog class="project-dialog" id="project-dialog">
+      <form method="dialog" class="project-dialog__shell">
+        <button class="project-dialog__close" type="submit" aria-label="Close project details">
+          Close
+        </button>
+        <div class="project-dialog__media">
+          <img id="dialog-image" src="" alt="" />
+        </div>
+        <div class="project-dialog__content">
+          <p class="eyebrow" id="dialog-category"></p>
+          <h3 id="dialog-title"></h3>
+          <p class="project-dialog__meta" id="dialog-subtitle"></p>
+          <p id="dialog-summary"></p>
+          <ul class="project-dialog__tags" id="dialog-tags"></ul>
+          <div class="project-dialog__actions">
+            <a class="button button--primary" href="#contact">Discuss This Direction</a>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./content.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
