@@ -1,6 +1,6 @@
 window.siteData = {
-  bookingUrl: "https://greendesignsydney.com.au/contact-us/ola/services/architecture-consulting",
-  contactPageUrl: "https://greendesignsydney.com.au/contact-us",
+  bookingUrl: "",
+  contactPageUrl: "",
   enquiryEmail: "",
   phonePrimary: "02 8287 1288",
   phoneSecondary: "0426 967 745",

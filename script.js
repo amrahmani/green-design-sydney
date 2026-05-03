@@ -18,7 +18,8 @@ const dialogTags = document.getElementById("dialog-tags");
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const siteNav = document.querySelector("[data-nav]");
 const enquiryForms = [...document.querySelectorAll("[data-enquiry-form]")];
-const bookingLinks = [...document.querySelectorAll("[data-booking-url]")];
+const bookingSheetToggles = [...document.querySelectorAll("[data-booking-sheet-toggle]")];
+const bookingSheet = document.querySelector("[data-booking-sheet]");
 
 let activeFilter = "All";
 const hasEnquiryEmail = Boolean(siteData.enquiryEmail && siteData.enquiryEmail.trim());
@@ -26,10 +27,7 @@ const hasEnquiryEmail = Boolean(siteData.enquiryEmail && siteData.enquiryEmail.t
 const enquiryDefinitions = {
   contact: {
     subject: "Green Design Sydney - Free Estimate Request",
-    success: "Your estimate request draft is ready.",
-    fallbackSuccess:
-      "Your estimate request summary is ready. The live contact page has been opened because the original site does not publish a direct public email address.",
-    fallbackUrl: () => siteData.contactPageUrl,
+    success: "Your estimate request summary is ready.",
     buildBody: (data) => [
       "Hello Green Design Sydney,",
       "",
@@ -45,9 +43,8 @@ const enquiryDefinitions = {
   },
   booking: {
     subject: "Green Design Sydney - Book First Hour",
-    success:
-      "Your booking request draft is ready and the original live calendar has been opened in a new tab.",
-    openBooking: true,
+    success: "Your booking request summary is ready and the on-site booking options are open.",
+    openBookingSheet: true,
     buildBody: (data) => [
       "Hello Green Design Sydney,",
       "",
@@ -67,10 +64,7 @@ const enquiryDefinitions = {
   consideration: {
     subject: "Green Design Sydney - Luxury Home Consideration",
     success:
-      "Your consideration request draft is ready. Green Design Sydney can now review the luxury brief with the core eligibility details included.",
-    fallbackSuccess:
-      "Your luxury consideration summary is ready. The live contact page has been opened so the original enquiry flow is still available.",
-    fallbackUrl: () => siteData.contactPageUrl,
+      "Your luxury consideration summary is ready. Green Design Sydney can now review the core eligibility details.",
     buildBody: (data) => [
       "Hello Green Design Sydney,",
       "",
@@ -88,10 +82,7 @@ const enquiryDefinitions = {
   },
   subscribe: {
     subject: "Green Design Sydney - Subscribe",
-    success: "The subscribe request draft is ready.",
-    fallbackSuccess:
-      "Your subscribe request summary is ready. The live contact page has been opened because the original site does not publish a direct public email address.",
-    fallbackUrl: () => siteData.contactPageUrl,
+    success: "Your subscribe request summary is ready.",
     buildBody: (data) => [
       "Hello Green Design Sydney,",
       "",
@@ -275,12 +266,7 @@ function openProject(projectId) {
   dialogSubtitle.textContent = project.subtitle;
   dialogSummary.textContent = project.summary;
   dialogTags.innerHTML = project.tags.map((tag) => `<li>${tag}</li>`).join("");
-
-  if (typeof dialog.showModal === "function") {
-    dialog.showModal();
-  } else {
-    dialog.setAttribute("open", "open");
-  }
+  showDialog(dialog);
 }
 
 function bindFilterEvents() {
@@ -322,25 +308,8 @@ function bindMenu() {
   });
 }
 
-function bindLiveLinks() {
-  bookingLinks.forEach((link) => {
-    link.href = siteData.bookingUrl;
-    link.target = "_blank";
-    link.rel = "noreferrer";
-  });
-}
-
 function buildMailto(subject, body) {
   return `mailto:${siteData.enquiryEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-function openExternal(url) {
-  if (!url) {
-    return false;
-  }
-
-  window.open(url, "_blank", "noopener,noreferrer");
-  return true;
 }
 
 function setFormFeedback(form, state, message) {
@@ -367,6 +336,152 @@ async function copyToClipboard(text) {
   }
 }
 
+function showDialog(dialogElement) {
+  if (!dialogElement) {
+    return false;
+  }
+
+  if (dialogElement.hasAttribute("open")) {
+    return true;
+  }
+
+  if (typeof dialogElement.showModal === "function") {
+    dialogElement.showModal();
+  } else {
+    dialogElement.setAttribute("open", "open");
+  }
+
+  return true;
+}
+
+function closeDialog(dialogElement) {
+  if (!dialogElement) {
+    return;
+  }
+
+  if (typeof dialogElement.close === "function") {
+    dialogElement.close();
+  } else {
+    dialogElement.removeAttribute("open");
+  }
+}
+
+function openBookingSheet() {
+  return showDialog(bookingSheet);
+}
+
+function bindBookingSheet() {
+  bookingSheetToggles.forEach((toggle) => {
+    toggle.addEventListener("click", (event) => {
+      event.preventDefault();
+      openBookingSheet();
+    });
+  });
+
+  if (!bookingSheet) {
+    return;
+  }
+
+  bookingSheet.querySelectorAll("[data-sheet-close]").forEach((button) => {
+    button.addEventListener("click", () => closeDialog(bookingSheet));
+  });
+
+  bookingSheet.addEventListener("click", (event) => {
+    const rect = bookingSheet.getBoundingClientRect();
+    const clickedInside =
+      rect.top <= event.clientY &&
+      event.clientY <= rect.top + rect.height &&
+      rect.left <= event.clientX &&
+      event.clientX <= rect.left + rect.width;
+
+    if (!clickedInside) {
+      closeDialog(bookingSheet);
+    }
+  });
+}
+
+function renderTrustWidget() {
+  if (document.querySelector("[data-trust-widget]")) {
+    return;
+  }
+
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+      <div class="trust-widget" data-trust-widget>
+        <button
+          class="trust-widget__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="trust-widget-panel"
+          data-trust-toggle
+        >
+          <span class="trust-widget__icon" aria-hidden="true"></span>
+          <span class="trust-widget__copy">
+            <strong>Trusted Site</strong>
+            <small>Security info</small>
+          </span>
+        </button>
+        <section class="trust-widget__panel" id="trust-widget-panel" hidden data-trust-panel>
+          <button class="trust-widget__close" type="button" aria-label="Close security panel" data-trust-close>
+            Close
+          </button>
+          <p class="eyebrow">Trusted Site</p>
+          <h3>Secure browsing and contact actions.</h3>
+          <p>
+            This rebuilt website keeps the booking and enquiry journey on-site, restores the
+            verified studio contact details, and is ready for secure HTTPS publishing.
+          </p>
+          <ul class="trust-widget__list">
+            <li>Verified address, weekday hours, landline and mobile studio numbers.</li>
+            <li>Booking, estimate and subscribe flows no longer send visitors back to the old site.</li>
+            <li>Ready for live SSL, email inbox and calendar integration on the published domain.</li>
+          </ul>
+        </section>
+      </div>
+    `
+  );
+}
+
+function bindTrustWidget() {
+  const widget = document.querySelector("[data-trust-widget]");
+  const toggle = widget?.querySelector("[data-trust-toggle]");
+  const panel = widget?.querySelector("[data-trust-panel]");
+
+  if (!widget || !toggle || !panel) {
+    return;
+  }
+
+  const closePanel = () => {
+    toggle.setAttribute("aria-expanded", "false");
+    panel.hidden = true;
+  };
+
+  toggle.addEventListener("click", () => {
+    const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!isExpanded));
+    panel.hidden = isExpanded;
+  });
+
+  widget.querySelectorAll("[data-trust-close]").forEach((button) => {
+    button.addEventListener("click", closePanel);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (panel.hidden || widget.contains(event.target)) {
+      return;
+    }
+
+    closePanel();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !panel.hidden) {
+      closePanel();
+    }
+  });
+}
+
 async function handleEnquirySubmit(event) {
   event.preventDefault();
 
@@ -386,19 +501,14 @@ async function handleEnquirySubmit(event) {
   const data = Object.fromEntries(new FormData(form).entries());
   const body = definition.buildBody(data).join("\n");
   const copied = await copyToClipboard(body);
-  const fallbackUrl =
-    typeof definition.fallbackUrl === "function" ? definition.fallbackUrl() : definition.fallbackUrl;
   let message = definition.success;
 
-  if (definition.openBooking) {
-    openExternal(siteData.bookingUrl);
+  if (definition.openBookingSheet) {
+    openBookingSheet();
   }
 
   if (hasEnquiryEmail) {
     window.location.href = buildMailto(definition.subject, body);
-  } else if (fallbackUrl) {
-    openExternal(fallbackUrl);
-    message = definition.fallbackSuccess || definition.success;
   }
 
   setFormFeedback(
@@ -472,7 +582,7 @@ function bindDialogClose() {
     const anchor = event.target.closest("a[href]");
 
     if (anchor) {
-      dialog.close();
+      closeDialog(dialog);
       return;
     }
 
@@ -484,7 +594,7 @@ function bindDialogClose() {
       event.clientX <= rect.left + rect.width;
 
     if (!clickedInside) {
-      dialog.close();
+      closeDialog(dialog);
     }
   });
 }
@@ -514,12 +624,14 @@ renderArchiveIndex();
 renderServices();
 renderProcess();
 renderFaqs();
-bindLiveLinks();
+renderTrustWidget();
 bindFilterEvents();
 bindEnquiryForms();
+bindBookingSheet();
 bindMenu();
 bindRevealObserver();
 bindActiveNavigation();
+bindTrustWidget();
 bindDialogClose();
 scrollToHashTarget();
 window.addEventListener("hashchange", scrollToHashTarget);

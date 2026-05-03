@@ -156,9 +156,9 @@
               <p class="eyebrow">Book first hour</p>
               <h3>One-hour free building design consultation.</h3>
               <p>
-                We would love to hear from you and discuss your project. This rebuilt booking flow
-                captures the visitor's details first, then opens the live Green Design Sydney
-                booking calendar in a new tab.
+                We would love to hear from you and discuss your project. This booking flow keeps
+                the next step on-site by collecting the project brief first and then opening local
+                booking options instead of sending visitors back to the old website.
               </p>
               <form class="enquiry-form" data-enquiry-form="booking">
                 <div class="form-grid form-grid--two">
@@ -204,12 +204,13 @@
                 </div>
                 <div class="form-actions">
                   <button class="button button--primary" type="submit">Prepare Booking Request</button>
-                  <a class="button button--ghost" data-booking-url href="#">Open Live Calendar</a>
+                  <a class="button button--ghost" data-booking-sheet-toggle href="#booking-options">
+                    Open Booking Options
+                  </a>
                 </div>
                 <p class="form-note">
-                  After you submit, the enquiry email draft opens and the original booking calendar
-                  launches in a separate tab when a confirmed enquiry inbox is available. Until then,
-                  the booking summary is copied and the live calendar still opens.
+                  After you submit, the booking summary is copied locally and the on-site booking
+                  options can be opened straight away so the process stays inside this rebuilt site.
                 </p>
                 <p class="form-feedback" aria-live="polite"></p>
               </form>
@@ -220,8 +221,8 @@
               <h3>Subscribe</h3>
               <p>
                 The current contact page also includes a simple email-only signup. That field is
-                restored here, alongside the live contact handoff used when no public inbox is
-                published on the original site.
+                restored here, with a local summary handoff so the rebuilt site no longer sends
+                visitors back to the old contact page.
               </p>
               <form class="enquiry-form enquiry-form--compact" data-enquiry-form="subscribe">
                 <label class="field">
@@ -260,7 +261,8 @@
 
             <div class="contact-actions">
               <a class="button button--primary" href="#booking">Book First Hour</a>
-              <a class="button button--ghost" href="tel:+61282871288">Call Studio</a>
+              <a class="button button--ghost" href="tel:+61282871288">Call 02 8287 1288</a>
+              <a class="button button--ghost" href="tel:+61426967745">Call 0426 967 745</a>
             </div>
           </div>
 
@@ -302,9 +304,9 @@
                 <a class="button button--ghost" href="#booking">Book First Hour</a>
               </div>
               <p class="form-note">
-                The original site uses a hosted form with reCAPTCHA and does not publicly list a
-                direct email address. This redesigned static build prepares a structured enquiry
-                summary and hands visitors into the live original contact or booking flow instead.
+                The published studio details were restored from the original site, but this rebuilt
+                version now keeps the enquiry summary on-site until a direct email inbox is
+                connected for live form delivery.
               </p>
               <p class="form-feedback" aria-live="polite"></p>
             </form>
@@ -325,7 +327,10 @@
                 <h3>Call</h3>
                 <p>02 8287 1288</p>
                 <p>0426 967 745</p>
-                <a href="tel:+61426967745">Call mobile</a>
+                <div class="contact-card__actions">
+                  <a href="tel:+61282871288">Call landline</a>
+                  <a href="tel:+61426967745">Call mobile</a>
+                </div>
               </article>
               <article class="contact-card">
                 <h3>Hours</h3>
@@ -348,6 +353,29 @@
         </div>
       </section>
     </main>
+
+    <dialog class="site-sheet" data-booking-sheet aria-labelledby="booking-sheet-title">
+      <div class="site-sheet__panel" id="booking-options">
+        <button class="site-sheet__close" type="button" aria-label="Close booking options" data-sheet-close>
+          Close
+        </button>
+        <p class="eyebrow">Book First Hour</p>
+        <h3 id="booking-sheet-title">Choose the best way to confirm your consultation.</h3>
+        <p>
+          Share your preferred week and project brief in the booking form, then use either studio
+          line below during business hours to confirm the most suitable time.
+        </p>
+        <div class="site-sheet__actions">
+          <a class="button button--primary" href="tel:+61282871288">Call 02 8287 1288</a>
+          <a class="button button--ghost" href="tel:+61426967745">Call 0426 967 745</a>
+        </div>
+        <ul class="site-sheet__list">
+          <li>Monday - Friday: 8am - 5pm</li>
+          <li>18 Richmond Road, Seaforth NSW, Australia</li>
+          <li>Use the booking form above first so your summary is ready while you call.</li>
+        </ul>
+      </div>
+    </dialog>
 
     <footer class="site-footer">
       <div class="wrap site-footer__inner">
